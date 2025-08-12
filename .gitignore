@@ -1,0 +1,7 @@
+__pycache__/
+*.rar
+*.zip
+*.log
+*.tmp
+venv/
+user-wallet-transactions.json
