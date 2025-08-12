@@ -1,0 +1,102 @@
+✅ Step-by-Step Solution Outline
+
+1. Fetch Transaction History
+
+For each wallet address, retrieve transactions from Compound V2 or V3 using on-chain data.
+
+Options for Data Sources:
+
+Etherscan API (limited for Compound specifics)
+
+Covalent, Alchemy, or Infura (with access to Compound protocol interactions)
+
+Dune SQL queries (if allowed)
+
+Compound subgraphs via The Graph for clean DeFi protocol events
+
+We'll extract:
+
+mint(), redeem(), borrow(), repayBorrow(), liquidateBorrow() from Compound protocol smart contracts.
+
+✅ Prerequisites
+
+Before we start:
+
+Create a free account at https://etherscan.io
+
+Generate your API key from Etherscan API Keys
+
+2. Data Preparation (Feature Engineering)
+
+For each wallet, generate features such as:
+
+Total number of transactions
+
+Total borrowed amount
+
+Repayment ratio (total repaid / total borrowed)
+
+Liquidation count
+
+Average borrow duration
+
+Collateral-to-debt ratio (if retrievable)
+
+Frequency of transactions
+
+You can normalize using MinMaxScaler or z-score normalization to ensure features are comparable.
+
+
+3. Risk Scoring (0 to 1000)
+
+You can build a risk score using a rule-based or model-based approach:
+
+a. Rule-Based Formula (Simple Start)
+
+score = base_score - penalty
+Where:
+
+Base = 1000
+
+Penalty increases with:
+
+High borrow with low repay ratio
+
+High liquidation count
+
+Low transaction frequency (inactivity)
+
+Long borrow duration without repay
+
+score = 1000
+score -= 300 * (1 - repayment_ratio)
+score -= 200 * (liquidation_count > 0)
+score -= 100 * (activity_score < threshold)
+
+b. Model-Based (Advanced)
+
+Use unsupervised techniques like KMeans, DBSCAN, or Autoencoders to group wallets
+
+Score based on distance to centroid of “healthy” cluster
+
+Or use logistic regression/SVM if labeled risky wallets exist (less likely here)
+
+📤 Final Deliverables:
+
+output.csv with:
+
+wallet_id	score
+0xabc...	845
+
+A report:
+
+Data source (e.g., Compound V2 via The Graph)
+
+Features created
+
+Score logic
+
+Risk indicator justification (e.g., Liquidation count ↑ = risk ↑)
+
+
+
