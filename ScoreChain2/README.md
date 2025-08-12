@@ -1,4 +1,22 @@
-# Zeru Finance – Wallet Risk Scoring (Assignment 2)
+## ScoreChain2 — v2 (Rule + Model)
+**Folder:** `ScoreChain2/`
+
+**Includes**
+- Rule-based risk scoring
+- Model-based predictor
+- Combined scorer
+- PCA/KMeans visualization
+
+**Run**
+```bash
+
+
+python ScoreChain2/wallet_risk_scoring_rule_based.py
+python ScoreChain2/wallet_risk_score_prediction_model_based.py
+python ScoreChain2/wallet_risk_scoring_combined.py
+
+
+****# ScoreChin – Wallet Risk Scoring (Assignment 2)**
 
 This project calculates a **risk score (0–1000)** for Ethereum wallets using their on-chain transaction history.
 
@@ -54,7 +72,7 @@ score = 1000 - penalties
 **Visualization:**  
 Wallets are projected to 2D using PCA and colored by cluster.
 
-![KMeans Cluster](kmeans_cluster_visualization.png)
+![KMeans Cluster](ScoreChain2/kmeans_cluster_visualization.png)
 
 ---
 
@@ -84,7 +102,7 @@ pip install pandas requests scikit-learn openpyxl matplotlib
 ```
 
 ### Replace your Etherscan API Key
-Edit `wallet_risk_scoring_combined.py`:
+Edit `ScoreChain2.py`:
 ```python
 ETHERSCAN_API_KEY = "YOUR_KEY_HERE"
 ```
@@ -103,6 +121,3 @@ Rule-based scoring relies on fixed thresholds and does **not** require scaling.
 
 ---
 
-## 👨‍💻 Author
-
-Assignment submitted for Zeru Finance – Round 2
